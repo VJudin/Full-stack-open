@@ -14,8 +14,8 @@ const Part = (props) => {
   )
 }
 
-/* Function to render the list of parts */
-const content = (parts) => {
+const Content = (props) => {
+  const parts = props.parts
   return (
     <div>
       <Part content={parts[0].name} exercises={parts[0].exercises}/>
@@ -26,9 +26,10 @@ const content = (parts) => {
 }
 
 const Total = (props) => {
+  const parts = props.parts;
   return (
     <div>
-      <p>Number of exercises: {props.amount}</p>
+      <p>Number of exercises: {parts[0].exercises + parts[1].exercises + parts[2].exercises}</p>
     </div>
   )
 }
@@ -53,8 +54,8 @@ const App = () => {
   return (
     <div>
       <Header course={course}/>
-      {content(parts)}
-      <Total amount={parts[0].exercises + parts[1].exercises + parts[2].exercises}/>
+      <Content parts={parts}/>
+      <Total parts={parts}/>
     </div>
   )
 }
