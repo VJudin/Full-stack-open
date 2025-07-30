@@ -1,33 +1,48 @@
 import { useState } from 'react'
 
 
-// Decreases the amount of repetition in the return value of App
+// Component decreases the amount of repetition in the return value of App
 const Button = (props) => (
   <button onClick={props.onClick}>
     {props.text}
   </button>
 )
 
+// Component that counts the average
+const Avg = (props) => {
+  const valG = props.g
+  const valB = props.b * (-1)
+  const all = props.a
+  const avg = (valG + valB) / all
+  return (
+    <p>Average: {avg}</p>
+  )
+}
+
 const App = () => {
   // Save the buttons to their own states
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  const [all, setAll] = useState(0)
 
   // These funtions help with possible debugging
   const setGoodToVal = (newValue) =>  {
     console.log('Amount of Good ratings:', newValue)
     setGood(newValue)
+    setAll(all + 1)
   }
 
   const setNeutralToVal = (newValue) => {
     console.log('Amount of Neutral ratings:', newValue)
     setNeutral(newValue)
+    setAll(all + 1)
   }
 
   const setBadToVal = (newValue) => {
     console.log('Amount of Bad ratings:', newValue)
     setBad(newValue)
+    setAll(all + 1)
   }
 
   return (
@@ -40,6 +55,9 @@ const App = () => {
       <p>Good: {good}</p>
       <p>Neutral: {neutral}</p>
       <p>Bad: {bad}</p>
+      <p>All: {all}</p>
+      <Avg g={good} b={bad} a={all}/>
+      <p>Positive: {(good / all)*100}%</p>
     </div>
   )
 }
