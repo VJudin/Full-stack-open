@@ -10,13 +10,24 @@ const Button = (props) => (
 
 // Component that counts the average and percentage of positive feedback
 const Statistics = (props) => {
-  const valG = props.g
-  const valB = props.b * (-1)
+  const good = props.g
+  const bad = props.b
+  const valBad = bad * (-1)
+  const neutral = props.n 
   const all = props.a
-  const avg = (valG + valB) / all
-  const pp = valG / all * 100
+  const avg = (good + valBad) / all
+  const pp = good / all * 100
+  if (all === 0) {
+    return (
+      <p>No feedback given.</p>
+    )
+  }
   return (
     <div>
+      <p>Good: {good}</p>
+      <p>Neutral: {neutral}</p>
+      <p>Bad: {bad}</p>
+      <p>All: {all}</p>
       <p>Average: {avg}</p>
       <p>Positive: {pp}%</p>
     </div>
@@ -56,11 +67,7 @@ const App = () => {
       <Button onClick={ () => setNeutralToVal(neutral + 1)} text='neutral'/>
       <Button onClick={ () => setBadToVal(bad + 1)} text='bad'/>
       <h2>Statistics:</h2>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
-      <p>All: {all}</p>
-      <Statistics g={good} b={bad} a={all}/>
+      <Statistics g={good} n={neutral} b={bad} a={all}/>
     </div>
   )
 }
