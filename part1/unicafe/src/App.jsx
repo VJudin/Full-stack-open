@@ -8,6 +8,10 @@ const Button = (props) => (
   </button>
 )
 
+const StatisticLine = (props) => (
+  <p>{props.text}: {props.value}</p>
+)
+
 // Component that counts the average and percentage of positive feedback
 const Statistics = (props) => {
   const good = props.g
@@ -24,12 +28,12 @@ const Statistics = (props) => {
   }
   return (
     <div>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
-      <p>All: {all}</p>
-      <p>Average: {avg}</p>
-      <p>Positive: {pp}%</p>
+      <StatisticLine text="Good" value={good}/>
+      <StatisticLine text="Neutral" value={neutral} />
+      <StatisticLine text="Bad" value={bad} />
+      <StatisticLine text="All" value={all}  />
+      <StatisticLine text="Average" value={avg} />
+      <StatisticLine text="Persentage of Positive" value={pp} />
     </div>
   )
 }
