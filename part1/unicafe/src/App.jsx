@@ -8,14 +8,18 @@ const Button = (props) => (
   </button>
 )
 
-// Component that counts the average
-const Avg = (props) => {
+// Component that counts the average and percentage of positive feedback
+const Statistics = (props) => {
   const valG = props.g
   const valB = props.b * (-1)
   const all = props.a
   const avg = (valG + valB) / all
+  const pp = valG / all * 100
   return (
-    <p>Average: {avg}</p>
+    <div>
+      <p>Average: {avg}</p>
+      <p>Positive: {pp}%</p>
+    </div>
   )
 }
 
@@ -56,8 +60,7 @@ const App = () => {
       <p>Neutral: {neutral}</p>
       <p>Bad: {bad}</p>
       <p>All: {all}</p>
-      <Avg g={good} b={bad} a={all}/>
-      <p>Positive: {(good / all)*100}%</p>
+      <Statistics g={good} b={bad} a={all}/>
     </div>
   )
 }
