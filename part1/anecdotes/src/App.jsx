@@ -27,12 +27,24 @@ const App = () => {
     setVotes(copy)
   }
 
+  const findIndexOfMax = (arr) => {
+    const maxVal = Math.max(...arr)
+    return (
+      arr.indexOf(maxVal)
+    )
+  }
+
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <p>This anecdote has {votes[selected]} votes.</p>
       <button onClick={()=>addToVotes(selected)}>vote</button>
       <button onClick={()=> setSelected(GenerateRandomNumber(anecdotes.length))}>next anecdote</button>
+      <h1>Anecdote with most votes</h1>
+      {anecdotes[findIndexOfMax(votes)]}
+      <p>Which has {Math.max(...votes)} votes.</p>
+
     </div>
   )
 }
