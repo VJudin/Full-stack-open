@@ -30,7 +30,7 @@ const App = () => {
   return (
     <div>
       {anecdotes[selected]}
-      <br></br>
+      <p>This anecdote has {votes[selected]} votes.</p>
       <button onClick={()=>addToVotes(selected)}>vote</button>
       <button onClick={()=> setSelected(GenerateRandomNumber(anecdotes.length))}>next anecdote</button>
     </div>
