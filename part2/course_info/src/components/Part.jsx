@@ -1,6 +1,4 @@
 const Part = ({name, exercises}) => {
-    console.log(name)
-    console.log(exercises)
     return (
         <p>{name}:  {exercises}</p>
 
