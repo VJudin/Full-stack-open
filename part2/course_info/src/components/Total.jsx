@@ -4,6 +4,7 @@ const Total = ({parts}) => {
         (acc, curr) => acc + curr.exercises,
         0,   
     )
+    
     return (
     <b>Total {total} exercises</b>
 )}
