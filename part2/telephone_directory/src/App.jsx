@@ -3,28 +3,36 @@ import Person from './components/Person'
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
+    { name: 'Arto Hellas', number: '040-1231244' }
   ]) 
   const [newName, setNewName] = useState('')
+  const [newNumber, setNewNumber] = useState('')
 
   const addPerson = (event) => {
     event.preventDefault()
     //Array of the already included names
     const names = persons.map(person => person.name)
-    const newPerson = { name: newName }
-    console.log(names.includes(newName))
+    const newPerson = { 
+      name: newName,
+      number: newNumber 
+    }
     //compare the newName to the current names, if it is already in the list, do not add it
     //and give an error message
     if (names.includes(newName)) {
-      alert(`${newName} is already added to phonebook`)
+      alert(`${newName} is already added to phonebook.`)
       return
     }
     setPersons(persons.concat(newPerson))
     setNewName('')
+    setNewNumber('')
   }
 
   const handleNewName = (event) => {
     setNewName(event.target.value)
+  }
+
+  const handleNewNumber = (event) => {
+    setNewNumber(event.target.value)
   }
 
   return (
@@ -36,6 +44,13 @@ const App = () => {
             <input
               value={newName}
               onChange={handleNewName}
+            />
+        </div>
+        <div>
+          number:
+            <input
+              value={newNumber}
+              onChange={handleNewNumber}
             />
         </div>
         <div>
