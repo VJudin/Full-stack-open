@@ -9,8 +9,18 @@ const App = () => {
 
   const addPerson = (event) => {
     event.preventDefault()
-    const newPerson = { name: newName}
+    //Array of the already included names
+    const names = persons.map(person => person.name)
+    const newPerson = { name: newName }
+    console.log(names.includes(newName))
+    //compare the newName to the current names, if it is already in the list, do not add it
+    //and give an error message
+    if (names.includes(newName)) {
+      alert(`${newName} is already added to phonebook`)
+      return
+    }
     setPersons(persons.concat(newPerson))
+    setNewName('')
   }
 
   const handleNewName = (event) => {
