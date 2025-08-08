@@ -23,5 +23,9 @@ const deletePerson  = (id) => {
     })
 }
 
+const editPhoneNumber = (id, newPerson) => {
+    return axios.put(`${baseURL}/${id}`, newPerson)
+}
 
-export default {getAll, addPerson, deletePerson}
+
+export default {getAll, addPerson, deletePerson, editPhoneNumber}

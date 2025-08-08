@@ -26,10 +26,18 @@ const App = () => {
       name: newName,
       number: newNumber 
     }
-    //compare the newName to the current names, if it is already in the list, do not add it
-    //and give an error message
+    //compare the newName to the current names, if it is already in the list, ask if the
+    //user wishes to swap the phone number of this contact
     if (names.includes(newName)) {
-      alert(`${newName} is already added to phonebook.`)
+      const person = persons.find(person => person.name === newName)
+      const newPerson  = {...person, number: newNumber}
+      if (confirm(`${person.name} is already added to phonebook, replace the old number with a new one?`)) {
+        peopleService
+          .editPhoneNumber(person.id, newPerson)
+          .then(response => {
+            setPersons(persons.map(person =>  person.id !== newPerson.id ? person : response.data))
+          })
+      }
       setNewName('')
       setNewNumber('')
       return
@@ -57,7 +65,8 @@ const App = () => {
               })
     }
   }
-  
+
+
   const handleNewName = (event) => {
     setNewName(event.target.value)
   }
