@@ -1,7 +1,7 @@
-const Country = ({country}) => (
+const Country = ({country, show}) => (
     <div>
         {country.name.common}
-        <button>show</button>
+        <button onClick={() => show(country)}>show</button>
     </div>
 )
 

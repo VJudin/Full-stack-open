@@ -8,6 +8,7 @@ function App() {
   const [country, setCountry] = useState(null)
   const [countries, setCountries] = useState([])
   const [countryInfo, setCountryInfo] = useState(null)
+  const [shown, setShown] =  useState(false)
 
   useEffect(() => {
     console.log('country  is now',  country)
@@ -36,13 +37,14 @@ function App() {
         setCountryInfo(country)
       })
       console.log("logged info", countryInfo)
+      setShown(true)
     }
 
   const handleChange = (event) => {
     setValue(event.target.value)
     setCountry(event.target.value)
+    setShown(false)
   }
-
   
 
   const countriesToShow = value.length === 0 
@@ -55,9 +57,9 @@ function App() {
         find countries: <input value={value} onChange={handleChange} />
       </form>
       <div>
-        {countriesToShow.length === 1 
-        ? <CountryInfo country={countriesToShow[0]}/> 
-        :<Countries countries={countriesToShow} />}
+        {shown 
+        ? <CountryInfo country={countryInfo}/> 
+        :<Countries countries={countriesToShow} show={getInfoOnOne}/>}
       </div>
     </div>
   )
