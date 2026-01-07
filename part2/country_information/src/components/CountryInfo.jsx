@@ -1,6 +1,9 @@
 import Languages from "./Languages"
 
 const CountryInfo = ({country}) => {
+    if (!country) {
+        return <div>No country selected</div>
+    }
     console.log("info reached")
     console.log(country)
     console.log("languages are", country.languages)
