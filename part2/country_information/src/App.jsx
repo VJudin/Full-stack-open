@@ -9,6 +9,9 @@ function App() {
   const [countries, setCountries] = useState([])
   const [countryInfo, setCountryInfo] = useState(null)
   const [shown, setShown] =  useState(false)
+  const [weather, setWeather] = useState(null)
+
+  const api_key = import.meta.env.VITE_SOME_KEY
 
   useEffect(() => {
     console.log('country  is now',  country)
@@ -37,8 +40,18 @@ function App() {
         setCountryInfo(country)
       })
       console.log("logged info", countryInfo)
+      getWeather(api_key, country.capital)
       setShown(true)
     }
+  
+  const getWeather = (key, city) => {
+    console.log("fetching weather info")
+    countryService
+    .getWeather({key, city})
+    .then(weather => {
+      setWeather(weather)
+    })
+  }
 
   const handleChange = (event) => {
     setValue(event.target.value)
@@ -58,7 +71,7 @@ function App() {
       </form>
       <div>
         {shown 
-        ? <CountryInfo country={countryInfo}/> 
+        ? <CountryInfo country={countryInfo} weather={weather}/> 
         :<Countries countries={countriesToShow} show={getInfoOnOne}/>}
       </div>
     </div>

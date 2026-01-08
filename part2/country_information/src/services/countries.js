@@ -16,4 +16,10 @@ const getInfoOnCountry = (country) => {
     })
 }
 
-export default {getAll, getInfoOnCountry}
+const getWeather = ({key, city}) => {
+    const request = axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
+    return request.then(response => {
+            return  response.data
+    })
+}
+export default {getAll, getInfoOnCountry, getWeather}
